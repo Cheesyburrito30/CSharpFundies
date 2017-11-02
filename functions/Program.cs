@@ -61,6 +61,38 @@ namespace functions
             Console.WriteLine("Adding 5 to int number without reference");
             addSix(number);
             Console.WriteLine(number);
+
+            // for functions that need an arbitrary amount of params, we can do
+            // a few things. We can either pass them through as an array or list
+            // or we can use the keyword params inside of the function parameter
+            void typeNames(string[] names) 
+            {
+                // Array.ForEach (<yourName>, action)
+                // the "{0}\t" is a tab
+                Array.ForEach(names, i => Console.Write("{0}\t", i));
+            };
+
+            Console.WriteLine("Passing an array into a function sans params");
+            typeNames(new string[] {"John", "Mady", "Vernon"});
+
+            // using params in the parameter makes adding multiple of the same
+            // type of params super easy, don't need to create a new string arr
+            // or anything, just have to put in multiple parameters, seperated
+            // by comma.
+            // each function can have only one params parameter. Parameters 
+            // declared with params are allowed to be empty when the function
+            // is called. You can also call something like
+            // void testFunction(int number, params string[] names)
+            // and as long as the last parameters are all strings you can have 
+            // the int as the first param, letting you pass more than one type.
+            void paramsNames(params string[] names)
+            {
+                Array.ForEach(names, i => Console.Write("{0}\t", i));
+            }
+            Console.WriteLine();
+
+            Console.WriteLine("Passing an array into a function with params");
+            paramsNames("John", "Phil", "Michaels");
         }
     }
 }
